@@ -6,7 +6,7 @@ def train_yolo_model():
     """
     print("🤖 開始載入模型...")
     
-    model = YOLO('yolo11n.pt') 
+    model = YOLO('./models/YH.yaml') 
 
     print("🔥 開始訓練模型...")
     
