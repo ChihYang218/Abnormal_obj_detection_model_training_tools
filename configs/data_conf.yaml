@@ -1,0 +1,16 @@
+# YOLO 資料集設定檔
+
+# 1. 路徑設定
+# 假設您在專案根目錄 (anormal-obj-detection) 執行訓練
+path: ./dataset  
+train: train/images
+val: valid/images
+test: test/images  # (可選) 如果您有測試集
+
+# 2. Class 設定
+# 請務必依照您 'labels' 檔案中的 class index 順序填寫
+names:
+  0: bird  # 例如: bird
+  1: person  # 例如: person
+  2: pig  # 例如: pig
+  # ... 繼續添加您的類別
