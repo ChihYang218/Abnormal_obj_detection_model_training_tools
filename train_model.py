@@ -12,8 +12,6 @@ def train_yolo_model(model):
     執行 YOLO11 (或 v8/v9) 模型的訓練。
     """
     print("🤖 開始載入模型...")
-    
-    # model = YOLO('./models/v100.yaml') 
 
     print("🔥 開始訓練模型...")
     
@@ -22,9 +20,9 @@ def train_yolo_model(model):
         data='configs/data_conf.yaml',  # 指向您的資料集設定檔
         epochs=1500,                  # 訓練週期 (建議 100-300)
         imgsz=640,                   # 影像大小 (例如 640 或 1280)
-        batch=210,                    # 批次大小 (根據您的 GPU VRAM 調整)
-        device=[0, 1, 2],
-        name='v5',       # 訓練結果將存放在 'runs/detect/out'
+        batch=20,                    # 批次大小 (根據您的 GPU VRAM 調整)
+        device=0,
+        name='v5',       # 訓練結果將存放在 'runs/detect/*'
         lr0=0.01,
         lrf=0.01,
         save_period=10,
@@ -39,11 +37,6 @@ def train_yolo_model(model):
     metrics = model.val()
     print(f"mAP50-95: {metrics.box.map}")
     print(f"mAP50: {metrics.box.map50}")
-
-    # (可選) 將最佳模型複製到 'model' 資料夾
-    # best_model_path = results.save_dir / 'weights' / 'best.pt'
-    # shutil.copy(best_model_path, 'model/best_model_yolov10n.pt')
-    # print(f"🏆 最佳模型已複製到 'model/' 資料夾")
 
 
 if __name__ == '__main__':
