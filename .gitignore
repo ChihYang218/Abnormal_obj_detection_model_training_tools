@@ -1,4 +1,5 @@
 dataset/
 runs/
 venv/
+yolo_env/
 yolo11n.pt
