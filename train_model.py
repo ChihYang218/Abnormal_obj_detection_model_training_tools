@@ -20,13 +20,15 @@ def train_yolo_model(model):
         data='configs/data_conf.yaml',  # 指向您的資料集設定檔
         epochs=1500,                  # 訓練週期 (建議 100-300)
         imgsz=640,                   # 影像大小 (例如 640 或 1280)
-        batch=20,                    # 批次大小 (根據您的 GPU VRAM 調整)
+        batch=21,                    # 批次大小 (根據您的 GPU VRAM 調整)
         device=0,
         name='v5',       # 訓練結果將存放在 'runs/detect/*'
         lr0=0.01,
         lrf=0.01,
         save_period=10,
         patience=1500, # 保證不 earlystopping
+        
+        workers=4, # 預設 8，一次吃 10G 記憶體！
     )
     
     print("✅ 訓練完成！")
