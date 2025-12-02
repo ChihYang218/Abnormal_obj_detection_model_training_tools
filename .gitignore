@@ -3,3 +3,8 @@ runs/
 venv/
 yolo_env/
 yolo11n.pt
+dataset_old/
+kit/result_jpg/l*
+kit/result_jpg/m*
+kit/coco_dwloader/coco2017_dataset/
+kit/coco_dwloader/instances*
