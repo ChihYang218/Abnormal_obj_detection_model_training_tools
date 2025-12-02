@@ -13,8 +13,8 @@ scales: # model compound scaling constants, i.e. 'model=yolo11n.yaml' will call 
 
 # YOLO11n backbone
 backbone:
-  - [-1, 1, DWConv, [64, 3, 2]]
-  - [-1, 1, DWConv, [128, 3, 2]]
+  - [-1, 1, Conv, [64, 3, 2]]
+  - [-1, 1, Conv, [128, 3, 2]]
   - [-1, 1, C3k2, [128, False, 0.25]]
   - [-1, 1, DWConv, [256, 3, 2]]
   - [-1, 1, C3k2, [256, False, 0.25]]
@@ -29,14 +29,15 @@ backbone:
 
 head:
   - [-1, 1, nn.Upsample, [None, 2, "nearest"]]
-  - [[-1, 6], 1, Concat, [1]]
+
+  - [[-1, 6, 5], 1, Concat, [1]]
+
+  - [-1, 2, C3k2, [256, False]]
 
   - [-1, 1, DWConv, [256, 3, 2]]
 
-  - [-1, 1, nn.Upsample, [None, 4, "nearest"]]
-  - [[-1, 4], 1, Concat, [1]]
+  - [[-1, 9], 1, Concat, [1]]
 
-  - [-1, 2, C3k2, [512, True]]
+  - [-1, 2, C3k2, [512, True]] # 只留最後一個是 True，符合 YOLO 原先架構
 
-  - [[13, 16], 1, Detect, [nc]] # Detect(P3, P4, P5)
-
+  - [[13, 16], 1, Detect, [nc]]
